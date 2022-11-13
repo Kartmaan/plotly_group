@@ -5,6 +5,7 @@ parameters can be adjusted :
 - The plot title
 - x/y axis labels
 - The intervals chosen for the grouping of values (example: [[0,5], [5,10], ...]
+- If no interval is defined, default intervals will be generated from the values present in the Pandas Series
 - Display a last interval grouping all the values greater than the last given interval
 - The plot kind (bar chart or pie chart)
 - Grid display
