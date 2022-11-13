@@ -14,6 +14,8 @@ def plot_group(series, title='', x_label='', y_label='',
     intervals and represent them graphically in the form of 
     bar chart or pie chart.
 
+    PARAMETERS INFO :
+    
     series : must be a Pandas Series containing int/float numbers
     
     title : plot title
@@ -114,19 +116,49 @@ def plot_group(series, title='', x_label='', y_label='',
     else:
         pass
 
-    # -------------- PREPARING FOR GROUPING --------------
-    # The user has not provided custom intervals (splits=None) : 
-    # a default intervals is defined
-    if intervals == None:
-        intervals = np.array([
-            [0, 5], 
-            [5, 10],
-            [10, 50],
-            [50, 60],
-            [60, 70],
-            [70, 80],
-            [80, 90],
-            [90, 100]])
+    # -------------- DEFAULT INTERVALS --------------
+    # User has not specified custom intervals 
+    # (intervals is None) : so default intervals will be defined, 
+    # based on the values from the provided Pandas Series.
+    #
+    # 5 intervals are naively defined by dividing the maximum 
+    # value of the Series by the number of intervals (5), 
+    # the value obtained is then rounded up to the next hundred 
+    # by the lambda function 'roundup'.
+    # 
+    # If the maximum value of the Series is less than the 
+    # number of intervals (data with small values), we simply 
+    # divide the value maximum value by the number of intervals, 
+    # without using the roundup function (but still rounding 
+    # the results to 3 digits after the decimal point to avoid 
+    # displaying texts that are too long on the x axis)
+
+    if intervals is None:
+        max_val = max(series.values)
+        nbr_of_intervals = 5
+
+        roundup = lambda x : int(ceil(x/100)) * 100
+
+        if max_val > nbr_of_intervals:
+            interval_unit = roundup(max_val/nbr_of_intervals)
+        else:
+            interval_unit = round(max_val/nbr_of_intervals, 3)
+
+        intervals = []
+        frm = 0
+        to = interval_unit
+
+        while len(intervals) < nbr_of_intervals:
+            itrvl = [frm, to]
+            intervals.append(itrvl)
+            if max_val > nbr_of_intervals:
+                frm = frm+interval_unit
+                to = to+interval_unit
+            else:
+                frm = round(frm+interval_unit, 3)
+                to = round(to+interval_unit, 3)
+        
+        intervals = np.array(intervals)
 
     # -------------- INTERVALS CHECK --------------
     # A custom intervals has been defined, verification is needed
@@ -278,5 +310,3 @@ def plot_group(series, title='', x_label='', y_label='',
     # Wrong input for 'output' parameter
     else:
         raise NameError('Unrecognized "output" parameter')
-
-print(plot_group.__doc__)
