@@ -1,6 +1,6 @@
 # plotly_group
 A function that groups values from a Pandas Series according to given intervals 
-and represent them graphically in the form of bar chart or pie chart. Serval 
+and represent them graphically in the form of bar chart or pie chart with Plotly. Serval 
 parameters can be adjusted :
 - The plot title
 - x/y axis labels
