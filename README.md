@@ -61,3 +61,17 @@ bar_color='#b4522b')
 ```
 
 ![dist_high](https://user-images.githubusercontent.com/11463619/201738946-b9657aca-c540-46b7-9cbc-b19d87ffb982.png)
+
+The representation can also be done in the form of a pie chart :
+
+``` 
+inter = [[0,400], [400,800], [800,1200]]
+
+plot_group(dist,
+kind='pie',
+intervals = inter,
+higher_vals=True, 
+title='Distance of exoplanets from us [parsec]')
+```
+
+![dist_pie](https://user-images.githubusercontent.com/11463619/201741980-02ba18a3-616e-48d6-9082-0db64e9b7f16.png)
