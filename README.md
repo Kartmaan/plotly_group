@@ -27,9 +27,9 @@ plot_group(dist)
 
 ![dist](https://user-images.githubusercontent.com/11463619/201731901-2a962c4e-8157-406c-8779-5dc4704f636f.png)
 
-Intervals have been defined by default by the function based on the values present in the Series and their dispersion (see the comments in the function for more information).
+**Intervals have been defined by default** by the function **based on the values present in the Series** and their dispersion (see the comments in the function for more information).
 
-Now let's relaunch the function but adding some parameters and, in particular, custom intervals.
+Now let's relaunch the function but adding some parameters and, in particular, **custom intervals**.
 
 ```
 # Custom intervals
