@@ -57,7 +57,8 @@ def plot_group(series, title='', x_label='', y_label='',
         series = series.dropna()
 
         for idx, val in enumerate(series.values):
-            if not isinstance(val, (int, float)):
+            if not isinstance(val, (int, float, np.int32,
+            np.int64, np.float32, np.float64)):
                 raise ValueError('Series values must only '+
                 f'contain int or float, {type(val)} '+ 
                 f'given at index {idx}')
