@@ -132,7 +132,7 @@ def plot_group(series, title='', x_label='', y_label='',
     # this division is rounded up to the next hundred by the 
     # lambda function
     # 
-    # If the maximum value of the Series is less than the 
+    # If the percentile value is less than the 
     # number of intervals (data with small values), we simply 
     # divide the value maximum value by the number of intervals, 
     # without using the roundup function (but still rounding 
@@ -280,16 +280,12 @@ def plot_group(series, title='', x_label='', y_label='',
     
     # -------------- OUTPUT --------------
     # The output can take several forms:
-
-    # output = 'img': Static image (non-interactive), requires 
+    # > output = 'img': Static image (non-interactive), requires 
     # the plotly-orca module
-
-    # output = 'bytes': Image in bytes format, requires 
+    # > output = 'bytes': Image in bytes format, requires 
     # the plotly-orca module
-
-    # output='fig': Interactive Plotly Figure
-
-    # output = 'fig_obj': Figure Object
+    # > output='fig': Interactive Plotly Figure
+    # > output = 'fig_obj': Figure Object
 
     if output == 'img' or output == 'bytes':
         img_bytes = pio.to_image(
