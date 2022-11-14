@@ -121,10 +121,15 @@ def plot_group(series, title='', x_label='', y_label='',
     # (intervals is None) : so default intervals will be defined, 
     # based on the values from the provided Pandas Series.
     #
-    # 5 intervals are naively defined by dividing the maximum 
-    # value of the Series by the number of intervals (5), 
-    # the value obtained is then rounded up to the next hundred 
-    # by the lambda function 'roundup'.
+    # To define the intervals adaptively and taking into account 
+    # the dispersion, we calculate the 80th percentile of the 
+    # values of the Pandas Series and divide this value by the 
+    # number of intervals (5), thus, 80% of the most represented 
+    # values will appear in the first 5 slices, the remaining 20% 
+    # will be added to a 6th and last slice thanks to the 
+    # activation of the 'higher_vals' parameter. The result of 
+    # this division is rounded up to the next hundred by the 
+    # lambda function
     # 
     # If the maximum value of the Series is less than the 
     # number of intervals (data with small values), we simply 
@@ -134,15 +139,17 @@ def plot_group(series, title='', x_label='', y_label='',
     # displaying texts that are too long on the x axis)
 
     if intervals is None:
-        max_val = max(series.values)
+        percent = np.percentile(series.values, 80)
         nbr_of_intervals = 5
 
         roundup = lambda x : int(ceil(x/100)) * 100
 
-        if max_val > nbr_of_intervals:
-            interval_unit = roundup(max_val/nbr_of_intervals)
+        if percent > nbr_of_intervals:
+            interval_unit = roundup(percent/nbr_of_intervals)
+            higher_vals = True
         else:
-            interval_unit = round(max_val/nbr_of_intervals, 3)
+            interval_unit = round(percent/nbr_of_intervals, 3)
+            higher_vals = True
 
         intervals = []
         frm = 0
@@ -151,7 +158,7 @@ def plot_group(series, title='', x_label='', y_label='',
         while len(intervals) < nbr_of_intervals:
             itrvl = [frm, to]
             intervals.append(itrvl)
-            if max_val > nbr_of_intervals:
+            if percent > nbr_of_intervals:
                 frm = frm+interval_unit
                 to = to+interval_unit
             else:
