@@ -71,7 +71,7 @@ plot_group(dist,
 kind='pie',
 intervals = inter,
 higher_vals=True, 
-title='Distance of exoplanets from us [parsec]')
+title='Distance of exoplanets from us')
 ```
 
 ![dist_pie](https://user-images.githubusercontent.com/11463619/201741980-02ba18a3-616e-48d6-9082-0db64e9b7f16.png)
