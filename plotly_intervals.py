@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 import plotly.io as pio
 from IPython.display import Image
 
-def plot_group(series, title='', x_label='', y_label='', 
+def plot_intervals(series, title='', x_label='', y_label='', 
     intervals=None, higher_vals=False, kind='bar', grid=False,
     bar_color='#1776f2', output='fig'):
     """ 
