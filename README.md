@@ -10,7 +10,7 @@ parameters can be adjusted :
 - The plot kind (bar chart or pie chart)
 - Grid display
 - Choice of bar color for bar chart
-- The output (static/non-interactive image, interactive figure, plotly Figure object, bytes)
+- The output (static/non-interactive image, interactive figure, plotly Figure object, bytes, intervals dictionnary)
 
 # Exemples
 For this example we will use a dataset on exoplanets and recover in the form of Pandas Series the column relating to the distance of planetary systems from us :
