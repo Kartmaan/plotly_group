@@ -46,6 +46,9 @@ def plot_group(series, title='', x_label='', y_label='',
     'bytes' : returns image in bytes (need plotly-orca)
     'fig' : returns interactive Plotly figure (default)
     'fig_obj' : returns Plotly Figure object (contained in a variable)
+    'intervals' : A dictionary containing the title the intervals (key), 
+    and, contained in a list, the values contained in each of them in a 
+    numpy.array as well as the length of this numpy.array (values) 
     """
 
     # -------------- SERIES CHECK --------------
@@ -232,7 +235,10 @@ def plot_group(series, title='', x_label='', y_label='',
         part = series.loc[lambda x : x > intervals[-1][1]]
         part = np.array(part.values)
 
-        intervals_dict[f'+{intervals[-1][1]}'] = [part, len(part)]        
+        intervals_dict[f'+{intervals[-1][1]}'] = [part, len(part)]
+
+    if output == 'intervals':
+        return intervals_dict       
     
     # -------------- PLOTING --------------
     x = []
