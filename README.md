@@ -1,4 +1,4 @@
-# plotly_group
+# plotly_intervals
 A function that groups values from a Pandas Series according to given intervals 
 and represent them graphically in the form of bar chart or pie chart with Plotly. Serval 
 parameters can be adjusted :
