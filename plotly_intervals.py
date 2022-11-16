@@ -31,8 +31,8 @@ def plot_intervals(series, title='', x_label='', y_label='',
     higher_vals : an interval will be added for all values greater 
     than the last interval (default = False)
 
-    kind : plot kind, 'bar' for bar chart, 'pie' for pie chart
-    (default = 'bar')
+    kind : plot kind, 'bar' for bar chart, 'pie' for pie chart,
+    'pie_hole' for pie chart with hole. (default = 'bar')
 
     grid : show grid True/False 
     (only for bar chart, default = False)
@@ -269,12 +269,19 @@ def plot_intervals(series, title='', x_label='', y_label='',
             gridwidth=0.5)
 
     # Pie chart
-    elif kind == 'pie':
-        fig = go.Figure(data=[go.Pie(
-            labels=x, 
-            values=y,
-            hole=.5
-            )])
+    elif kind == 'pie' or kind == 'pie_hole':
+        if kind == 'pie':
+            fig = go.Figure(data=[go.Pie(
+                labels=x, 
+                values=y,
+                )])
+
+        else:
+            fig = go.Figure(data=[go.Pie(
+                labels=x, 
+                values=y,
+                hole=.5
+                )])
         
         fig.update_layout(
             title_text = f'{title}')
