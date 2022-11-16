@@ -68,7 +68,7 @@ The representation can also be done in the form of a pie chart :
 inter = [[0,400], [400,800], [800,1200]]
 
 plot_group(dist,
-kind='pie',
+kind='pie_hole',
 intervals = inter,
 higher_vals=True, 
 title='Distance of exoplanets from us')
